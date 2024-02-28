@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace BookCatalog.Infrastructure.Context
 {
-    public class BookCatalogDbContext:DbContext
+    public class BookCatalogDbContext : DbContext
     {
-        public BookCatalogDbContext(DbContextOptions<BookCatalogDbContext>options):base(options) 
-        {
+        public BookCatalogDbContext(DbContextOptions<BookCatalogDbContext> options) : base(options)
+        { }
             public DbSet<Book> Books { get; set; }
+
+
     }
-    }
+    
 }

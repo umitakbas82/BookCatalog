@@ -1,0 +1,34 @@
+﻿@page "/add-new"
+
+<PageTitle>Add New Book</PageTitle>
+
+<div class="row justify-content-center">
+    <div class="col-6">
+        <EditForm method="post" FormName="AddBookForm" Model="Book" autocomplete="off">
+           <h3>Add New Book</h3>
+           <div class="mb-3">
+               <lablel for="title" class="form-label">Title</lablel>
+               <InputText id="title" @bind-Value="Book.Title" class="form-control"></InputText>
+           </div>
+            <div class="mb-3">
+                <lablel for="author" class="form-label">Author</lablel>
+                <InputText id="author" @bind-Value="Book.Author" class="form-control"></InputText>
+            </div>
+            <div class="mb-3">
+                <lablel for="publication-date" class="form-label">Date Published</lablel>
+                <InputDate id="publication-date" @bind-Value="Book.PublicationDate" class="form-control"></InputDate>
+            </div>
+            <div class="mb-3">
+                <lablel for="category" class="form-label">Category</lablel>
+                <InputSelect id="category" @bind-Value="Book.Category" class="form-control shadow-none">
+                    <option value="0"> Select Category</option>
+                </InputSelect>
+            </div>
+        </EditForm>
+    </div>
+    
+</div>
+
+@code {
+    public Book Book { get; set; } = new();
+}

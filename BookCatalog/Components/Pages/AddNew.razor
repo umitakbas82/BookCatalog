@@ -1,10 +1,14 @@
 ﻿@page "/add-new"
 
+
+@inject IBooKRepository Repository
+@inject NavigationManager Navigation
+
 <PageTitle>Add New Book</PageTitle>
 
 <div class="row justify-content-center">
     <div class="col-6">
-        <EditForm method="post" FormName="AddBookForm" Model="Book" autocomplete="off">
+        <EditForm method="post" FormName="AddBookForm" OnInvalidSubmit="AddBook"  Model="Book" autocomplete="off">
            <h3>Add New Book</h3>
            <div class="mb-3">
                <lablel for="title" class="form-label">Title</lablel>
@@ -17,18 +21,36 @@
             <div class="mb-3">
                 <lablel for="publication-date" class="form-label">Date Published</lablel>
                 <InputDate id="publication-date" @bind-Value="Book.PublicationDate" class="form-control"></InputDate>
+
             </div>
             <div class="mb-3">
                 <lablel for="category" class="form-label">Category</lablel>
                 <InputSelect id="category" @bind-Value="Book.Category" class="form-control shadow-none">
                     <option value="0"> Select Category</option>
+                    @foreach(var category in Enum.GetValues(typeof(Category)))
+                    {
+                      <option value="@category">
+                          @category.ToString()
+                      </option>                     }
                 </InputSelect>
             </div>
+            <div class="mb-3">
+                <button class="btn btn-primary shadow-none">Save </button>
+            </div>
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
         </EditForm>
     </div>
     
 </div>
 
 @code {
+    [SupplyParameterFromForm]
     public Book Book { get; set; } = new();
+
+    private async Task AddBook()
+    {
+        await Repository.AddAsync(Book);
+        Navigation.NavigateTo("/");
+    }
 }

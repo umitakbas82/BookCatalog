@@ -8,6 +8,6 @@ namespace BookCatalogDomain.Enums
 {
     public  enum  Category
     {
-    Science,Technology,Fitness,Travel,SciFi,Horror
+    Science=1,Technology,Fitness,Travel,SciFi,Horror
     }
 }

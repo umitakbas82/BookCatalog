@@ -1,5 +1,7 @@
 using BookCatalog.Components;
 using BookCatalog.Infrastructure.Context;
+using BookCatalog.Infrastructure.Repositories;
+using BookCatalogApplication.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddDbContextFactory<BookCatalogDbContext>(options=>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BookCatalogConnection"))
 );
+
+builder.Services.AddScoped<IBooKRepository, BookRepository>();
 
 
 var app = builder.Build();

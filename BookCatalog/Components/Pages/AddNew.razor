@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/add-new"
 
 
 @inject IBookRepository Repository
@@ -10,7 +10,7 @@
 
 <div class="row justify-content-center">
     <div class="col-6">
-        <EditForm FormName="AddBookForm" OnValidSubmit="()=>AddBook()" Model="Book" autocomplete="off">
+        <EditForm Enhance="true" FormName="AddBookForm" OnValidSubmit="()=>AddBook()" Model="Book" autocomplete="off">
            <h3>Add New Book</h3>
            <div class="mb-3">
                <lablel for="title" class="form-label">Title</lablel>
@@ -39,6 +39,7 @@
             </div>
             <div class="mb-3">
                 <button class="btn btn-primary shadow-none">Save </button>
+                <a href="/" class="btn btn-outline-secondary ms-3"> Back to list</a>
             </div>
             <DataAnnotationsValidator/>
             <ValidationSummary/>

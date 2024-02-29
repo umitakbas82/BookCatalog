@@ -1,7 +1,53 @@
 ﻿@page "/"
-    
-<h3>List</h3>
+
+@inject IBookRepository Repository
+
+<PageTitle>
+    Book List
+</PageTitle>
+
+<div class="row justify-content-center">
+    <div class="col-6">
+        <a href="add-new" class="btn btn-outline-dark">
+        Add New Book    
+        </a>
+        @if(books is null)
+        {
+            <div class="book-item">
+                Loading Books. Please Wait....
+            </div>
+        }
+        else if (books.Any())
+        {
+            @foreach(var book in books)
+            {
+                <div class="card my-3 shadow-lg">
+                    <div class="book-item my-2 mx-2">
+                        <div class="book-card">
+                            <div class="book-card-body">
+                                <h5 style="color:#111926">@book.Title</h5>
+                                By @book.Author | @book.PublicationDate?.ToString("MMMM dd,yyyy")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            }
+        }
+        else
+        {
+            <div class="book-item">
+                Sorry No Books Found.
+            </div>
+        }
+    </div>
+</div>
 
 @code {
+    private List<Book>? books;
 
+    protected override async Task OnParametersSetAsync()
+    {
+        books = await Repository.GetAllAsync();
+    }
 }

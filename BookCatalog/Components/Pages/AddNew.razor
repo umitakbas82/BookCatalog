@@ -1,18 +1,21 @@
-﻿@page "/add-new"
+﻿@page "/"
 
 
-@inject IBooKRepository Repository
+@inject IBookRepository Repository
 @inject NavigationManager Navigation
+@using BookCatalogDomain.Entities
+
 
 <PageTitle>Add New Book</PageTitle>
 
 <div class="row justify-content-center">
     <div class="col-6">
-        <EditForm method="post" FormName="AddBookForm" OnInvalidSubmit="AddBook"  Model="Book" autocomplete="off">
+        <EditForm FormName="AddBookForm" OnValidSubmit="()=>AddBook()" Model="Book" autocomplete="off">
            <h3>Add New Book</h3>
            <div class="mb-3">
                <lablel for="title" class="form-label">Title</lablel>
-               <InputText id="title" @bind-Value="Book.Title" class="form-control"></InputText>
+               <InputText id="title" @bind-Value="Book!.Title" class="form-control"></InputText>
+               <ValidationMessage For=@(()=>Book.Title)/>
            </div>
             <div class="mb-3">
                 <lablel for="author" class="form-label">Author</lablel>

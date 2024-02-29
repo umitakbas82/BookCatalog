@@ -14,7 +14,7 @@ builder.Services.AddDbContextFactory<BookCatalogDbContext>(options=>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BookCatalogConnection"))
 );
 
-builder.Services.AddScoped<IBooKRepository, BookRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 
 var app = builder.Build();

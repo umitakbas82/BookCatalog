@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookCatalogApplication.Interfaces
 {
-    public interface IBooKRepository
+    public interface IBookRepository
     {
         Task AddAsync(Book book);
     }

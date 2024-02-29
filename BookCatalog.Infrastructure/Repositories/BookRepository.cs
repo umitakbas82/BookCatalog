@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookCatalog.Infrastructure.Repositories
 {
-    public class BookRepository:IBooKRepository
+    public class BookRepository:IBookRepository
     {
         private readonly BookCatalogDbContext context;
         public BookRepository(IDbContextFactory<BookCatalogDbContext> factory)

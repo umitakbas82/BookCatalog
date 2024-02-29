@@ -1,0 +1,14 @@
+﻿<div class="card my-3 shadow-lg">
+    <div class="book-item my-2 mx-2">
+        <div class="book-card">
+            <div class="book-card-body">
+                <h5 style="color:#111926">@Book.Title</h5>
+                By @Book.Author | @Book.PublicationDate?.ToString("MMMM dd,yyyy")
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public required Book Book { get; set; }
+}

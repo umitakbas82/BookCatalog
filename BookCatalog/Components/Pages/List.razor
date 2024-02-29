@@ -22,14 +22,7 @@
             @foreach(var book in books)
             {
                 <div class="card my-3 shadow-lg">
-                    <div class="book-item my-2 mx-2">
-                        <div class="book-card">
-                            <div class="book-card-body">
-                                <h5 style="color:#111926">@book.Title</h5>
-                                By @book.Author | @book.PublicationDate?.ToString("MMMM dd,yyyy")
-                            </div>
-                        </div>
-                    </div>
+                    <BookCard Book="book"/>
                 </div>
                 
             }

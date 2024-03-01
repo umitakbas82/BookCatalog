@@ -25,9 +25,9 @@ namespace BookCatalog.Infrastructure.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-           var book = await GetByIdAsync(id);
+           var book= await GetByIdAsync(id);
             if(book is not null)
             {
                 context.Books.Remove(book);

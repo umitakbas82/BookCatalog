@@ -1,16 +1,16 @@
-﻿<h3>DeleteConfirmDialog</h3>
-
-@if(Show){
+﻿
+@if (Show)
+{
     <div class="container">
         <div class="confirm-dialog">
             <h3>
-                This item deleted permanentlt. Are you sure..
+                This item deleted permanently. Are you sure..
             </h3>
             <div class="d-flex flex-row justify-content-center">
-                <button @onclick="OnCancel" class="btn btn-outline-success">
+                <button @onclick="OnCancel" class="btn btn-outline-success mx-3">
                     Cancel
                 </button>
-            <button @onclick="OnOk" class="btn btn-outline-danger">
+                <button @onclick="OnOk" class="btn btn-outline-danger">
                     Delete
                 </button>
             </div>
@@ -21,8 +21,10 @@
 @code {
     [Parameter]
     public bool Show { get; set; }
+
     [Parameter]
     public EventCallback OnCancel { get; set; }
+
     [Parameter]
     public EventCallback OnOk { get; set; }
 }

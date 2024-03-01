@@ -9,18 +9,21 @@
                 <h5 style="color:#111926">@Book.Title</h5>
                 By @Book.Author | @Book.PublicationDate?.ToString("MMMM dd,yyyy") |
                 Category:@Book.Category
-                <div class="actions d-flex flex-row justify-content-end ">
+               
+                <div class="  actions d-flex justify-content-end ">
                     <a href="@($"/edit/{Book.Id}")" class="btn btn-outline-dark shadow-lg">Edit</a>
+                        <button @onclick="OpenConfirmDialog" class=" btn btn-outline-danger mx-2"> Delete </button>
                 </div>
-                <div class="actions d-flex flex-row justify-content-end ">
-                   <button onclick="OpenConfirmDialog" class=" btn btn-outline-danger"> Delete </button>
-                </div>
-            </div>
+                
+                   
+                
             
+            </div>
         </div>
     </div>
 </div>
 <DeleteConfirmDialog Show="showConfirmDialog" OnCancel="CancelDelete" OnOk="DeleteBook"/>
+
 @code {
     private bool showConfirmDialog;
 
@@ -39,7 +42,8 @@
 
     private async Task DeleteBook()
     {
-        await Repository.DeleteAsync(Book.Id);
+        await Repository.DeleteByIdAsync(Book.Id);
+        
         showConfirmDialog = false;
         Navigation.NavigateTo("/");
     }

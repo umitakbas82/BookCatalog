@@ -1,7 +1,8 @@
 ﻿@page "/"
 
 @inject IBookRepository Repository
-@attribute [StreamRendering]
+
+
 
 <PageTitle>
     Book List
@@ -29,7 +30,7 @@
             @foreach(var book in books)
             {
                
-                    <BookCard Book="book"/>
+                    <BookCard @rendermode="InteractiveServer"  Book="book"/>
                
                 
             }

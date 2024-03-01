@@ -1,6 +1,7 @@
 ﻿@page "/"
 
 @inject IBookRepository Repository
+@attribute [StreamRendering]
 
 <PageTitle>
     Book List
@@ -14,16 +15,22 @@
         @if(books is null)
         {
             <div class="book-item">
-                Loading Books. Please Wait....
+                <div class="card my-3 shadow-lg">
+                    <p class="text-center my-3">
+                        Loading Books. Please Wait....
+                    </p>
+                   
+                </div>
+               
             </div>
         }
         else if (books.Any())
         {
             @foreach(var book in books)
             {
-                <div class="card my-3 shadow-lg">
+               
                     <BookCard Book="book"/>
-                </div>
+               
                 
             }
         }
@@ -41,6 +48,7 @@
 
     protected override async Task OnParametersSetAsync()
     {
+        await Task.Delay(3000);
         books = await Repository.GetAllAsync();
     }
 }

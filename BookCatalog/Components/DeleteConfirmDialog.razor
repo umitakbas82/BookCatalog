@@ -1,0 +1,28 @@
+﻿<h3>DeleteConfirmDialog</h3>
+
+@if(Show){
+    <div class="container">
+        <div class="confirm-dialog">
+            <h3>
+                This item deleted permanentlt. Are you sure..
+            </h3>
+            <div class="d-flex flex-row justify-content-center">
+                <button @onclick="OnCancel" class="btn btn-outline-success">
+                    Cancel
+                </button>
+            <button @onclick="OnOk" class="btn btn-outline-danger">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool Show { get; set; }
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+    [Parameter]
+    public EventCallback OnOk { get; set; }
+}

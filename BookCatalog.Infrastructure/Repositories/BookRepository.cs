@@ -4,6 +4,7 @@ using BookCatalogDomain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,16 @@ namespace BookCatalog.Infrastructure.Repositories
         {
             context.Books.Add(book);
             await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+           var book = await GetByIdAsync(id);
+            if(book is not null)
+            {
+                context.Books.Remove(book);
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task<List<Book>> GetAllAsync()

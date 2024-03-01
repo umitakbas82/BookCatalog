@@ -1,4 +1,8 @@
-﻿<div class="card my-3 shadow-lg">
+﻿@inject IBookRepository Repository
+@inject NavigationManager Navigation
+
+
+<div class="card my-3 shadow-lg">
     <div class="book-item my-2 mx-2">
         <div class="book-card">
             <div class="book-card-body">
@@ -8,12 +12,36 @@
                 <div class="actions d-flex flex-row justify-content-end ">
                     <a href="@($"/edit/{Book.Id}")" class="btn btn-outline-dark shadow-lg">Edit</a>
                 </div>
+                <div class="actions d-flex flex-row justify-content-end ">
+                   <button onclick="OpenConfirmDialog" class=" btn btn-outline-danger"> Delete </button>
+                </div>
             </div>
             
         </div>
     </div>
 </div>
+<DeleteConfirmDialog Show="showConfirmDialog" OnCancel="CancelDelete" OnOk="DeleteBook"/>
 @code {
+    private bool showConfirmDialog;
+
     [Parameter]
     public required Book Book { get; set; }
+
+    private void OpenConfirmDialog()
+    {
+        showConfirmDialog = true;
+    }
+
+    private void CancelDelete()
+    {
+        showConfirmDialog = false; 
+    }
+
+    private async Task DeleteBook()
+    {
+        await Repository.DeleteAsync(Book.Id);
+        showConfirmDialog = false;
+        Navigation.NavigateTo("/");
+    }
+    
 }

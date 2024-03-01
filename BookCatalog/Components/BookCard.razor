@@ -3,7 +3,8 @@
         <div class="book-card">
             <div class="book-card-body">
                 <h5 style="color:#111926">@Book.Title</h5>
-                By @Book.Author | @Book.PublicationDate?.ToString("MMMM dd,yyyy")
+                By @Book.Author | @Book.PublicationDate?.ToString("MMMM dd,yyyy") |
+                Category:@Book.Category
                 <div class="actions d-flex flex-row justify-content-end ">
                     <a href="@($"/edit/{Book.Id}")" class="btn btn-outline-dark shadow-lg">Edit</a>
                 </div>
